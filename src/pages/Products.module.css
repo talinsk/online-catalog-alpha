@@ -98,7 +98,6 @@
 .filterControls {
   display: flex;
   gap: 20px;
-  margin-bottom: 20px;
   padding: 10px;
 }
 
@@ -121,4 +120,42 @@
   color: #000;
   font-weight: bold;
   border-bottom: 2px solid #000;
+}
+
+.searchWrapper {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+  margin-right: 20px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: 1px solid #dcdde1;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.searchInput:focus {
+  border-color: #1a1a1a;
+}
+
+.clearBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #a4b0be;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.clearBtn:hover {
+  color: #2f3542;
 }

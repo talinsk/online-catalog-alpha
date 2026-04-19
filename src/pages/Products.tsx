@@ -11,6 +11,7 @@ const Products = () => {
   
   const { items, isLoading } = useAppSelector((state) => state.products);
   const [filter, setFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (items.length === 0 && !isLoading) {
@@ -32,9 +33,11 @@ const Products = () => {
     dispatch(toggleFavorite(id));
   };
 
-  const displayedItems = filter === 'favorites' 
-    ? items.filter(item => item.isFavorite) 
-    : items;
+  const displayedItems = items
+    .filter(item => (filter === 'favorites' ? item.isFavorite : true))
+    .filter(item => 
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   const handleProductClick = (id: number) => {
     navigate(`/product/${id}`);
@@ -58,6 +61,20 @@ const Products = () => {
             >
               Избранное ({items.filter(i => i.isFavorite).length})
             </button>
+          </div>
+          <div className={styles.searchWrapper}>
+            <input
+              type="text"
+              placeholder="Поиск по названию"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={styles.searchInput}
+            />
+            {searchQuery && (
+              <button className={styles.clearBtn} onClick={() => setSearchQuery('')}>
+                ✕
+              </button>
+            )}
           </div>
           <button 
             className="primaryBtn" 
