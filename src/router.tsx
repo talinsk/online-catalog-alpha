@@ -1,11 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 import Products from './pages/Products';
 import Product from './pages/Product';
 import App from './App';
 import Home from './pages/Home';
 import CreateProduct from './pages/CreateProduct';
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <App />,
@@ -28,4 +28,6 @@ export const router = createBrowserRouter([
       }
     ],
   },
-]);
+], {
+  basename: import.meta.env.BASE_URL 
+});
